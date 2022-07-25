@@ -1,6 +1,6 @@
 <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
     <fieldset class="mb-3">
-        <label for="username" class="block">Username</label>
+        <label for="username" class="block p-2">Username</label>
         <input type="text" 
         ngModel
         #username="ngModel"
@@ -9,5 +9,5 @@
         placeholder="Jane Doe"/>
     </fieldset>
 
-    <button type="submit" class="bg-yellow-500 p-2 rounded">Login</button>
+    <button type="submit"  class="btn btn-outline-success m-1">Login</button>
 </form>
