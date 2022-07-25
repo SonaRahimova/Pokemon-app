@@ -1,5 +1,9 @@
 export interface Pokemon {
     id: string;
-    username: string;
-    pokemon: [];
+    name: string;
+    url: string;
+}
+
+export interface PokemonData {
+    results: Array<Pokemon>;
 }
