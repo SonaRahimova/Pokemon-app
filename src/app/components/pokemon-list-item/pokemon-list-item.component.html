@@ -1,10 +1,5 @@
-
-
-
-
-
-
-        <li class=" container" *ngIf="pokemon">
+        <li class=" container relative" *ngIf="pokemon " >
+            <app-favourite-pokemon-button [pokemonName]="pokemon.name"></app-favourite-pokemon-button>
             <section>
                 <span class="pokemon-title ">{{pokemon.name}}</span>
             </section>

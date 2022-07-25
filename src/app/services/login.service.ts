@@ -4,7 +4,7 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
 
-const { apiTrainers } = environment;
+const { apiTrainers, apiKey} = environment;
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,7 @@ export class LoginService {
 
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
-      "x-api-key": "NnVsdwJd7UieOVAU3dKPQA=="
+      "x-api-key": apiKey
     });
 
     return this.http.post<Trainer>(apiTrainers, trainer, {
