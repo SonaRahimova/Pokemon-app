@@ -4,10 +4,17 @@ The project was a part of a front-end development course and was intented to tea
 
 ## Install
 To start this application you need to clone it from github as following:
-git clone  https://github.com/suay-selay/Pokemon-app
+
+```
+git clone https://github.com/suay-selay/Pokemon-app
+```
+```
 cd Pokémon-app
+```
 and then:
+```
 npm install -g @angular/cli
+```
 
 
 ## Usage
