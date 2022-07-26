@@ -3,11 +3,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 The project was a part of a front-end development course and was intented to teach fundamentals of Angular. It includes working with different components,pages, api and tailwind css. 
 
 ## Install
-TTo start this application you need to clone it from github as following:
-git clone  https://github.com/suay-selay/Pokemon-app
+To start this application you need to clone it from github as following:
+
+```
+git clone https://github.com/suay-selay/Pokemon-app
+```
+```
 cd Pokémon-app
+```
 and then:
+```
 npm install -g @angular/cli
+```
 
 
 ## Usage
