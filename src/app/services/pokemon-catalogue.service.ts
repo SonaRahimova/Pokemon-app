@@ -46,6 +46,13 @@ export class PokemonCatalogueService {
         next: (pokemonData: PokemonData) => {
           const pokemons: Pokemon[] = pokemonData.results;
           this._pokemonsData = pokemons;
+          for (let i = 0; i < pokemons.length; i++) {
+            let imgArray = pokemons[i].url.split("/");
+            let id= imgArray[imgArray.length-2];
+            pokemons[i].id = parseInt(id);
+        
+            
+          }
           
         },
         error: (error: HttpErrorResponse) => {

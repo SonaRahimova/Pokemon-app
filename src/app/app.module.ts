@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { FavouritePokemonButtonComponent } from './components/favourite-pokemon-button/favourite-pokemon-button.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 // Decorator
 @NgModule({
@@ -23,7 +24,8 @@ import { FavouritePokemonButtonComponent } from './components/favourite-pokemon-
     LoginFormComponent,
     PokemonListComponent,
     PokemonListItemComponent,
-    FavouritePokemonButtonComponent
+    FavouritePokemonButtonComponent,
+    NavbarComponent
   ],
   imports: [   //Modules
     BrowserModule,
