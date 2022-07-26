@@ -29,7 +29,6 @@ export class TrainerService {
     if(this._trainer){
     return Boolean( this._trainer?.favourites.find((pokemon: Pokemon) => pokemon.name === pokemonName));
    }
-
    return false;
 }
 

@@ -21,7 +21,6 @@ export class FavouriteService {
 
   ) { }
   //get the pokemon based in the name
-
   public addToFavourtites(pokemonName: string): Observable<Trainer> {
 
     if (!this.trainerService.trainer) {

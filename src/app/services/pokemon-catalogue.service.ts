@@ -49,9 +49,7 @@ export class PokemonCatalogueService {
           for (let i = 0; i < pokemons.length; i++) {
             let imgArray = pokemons[i].url.split("/");
             let id= imgArray[imgArray.length-2];
-            pokemons[i].id = parseInt(id);
-        
-            
+            pokemons[i].id = parseInt(id);          
           }
           
         },
