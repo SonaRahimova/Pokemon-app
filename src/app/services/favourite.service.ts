@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
@@ -13,12 +13,6 @@ const { apiKey, apiTrainers } = environment;
   providedIn: 'root'
 })
 export class FavouriteService {
-
-  private _loading: boolean = false;
-
-  get loading(): boolean {
-    return this._loading;
-  }
 
   constructor(
     private http: HttpClient,
@@ -52,7 +46,6 @@ export class FavouriteService {
       "x-api-key": apiKey
     })
 
-    this._loading = true;
     console.log(trainer)
     //this is the values we want to update
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
@@ -63,9 +56,6 @@ export class FavouriteService {
       .pipe(
         tap((uppdatedTrainer: Trainer) => {
           this.trainerService.trainer = uppdatedTrainer;
-        }),
-        finalize(() => {
-          this._loading = false;
         })
       )
   }
