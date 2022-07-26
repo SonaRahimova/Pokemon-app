@@ -42,7 +42,9 @@ export class FavouriteService {
     }
 
     if (this.trainerService.inFavourites(pokemonName)) {
-      throw new Error("addToFavourites: Pokemon already in favourites: " + pokemonName);
+      this.trainerService.removeFromFavourites(pokemonName);
+    }else{
+      this.trainerService.addToFavourites(pokemon);
     }
 
     const headers = new HttpHeaders({
@@ -54,7 +56,7 @@ export class FavouriteService {
     console.log(trainer)
     //this is the values we want to update
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
-      favourites: [...trainer.favourites, pokemon]
+      favourites: [...trainer.favourites]
     }, {
       headers
     })
