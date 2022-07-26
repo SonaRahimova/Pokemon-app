@@ -7,7 +7,7 @@ import { Trainer } from '../models/trainer.model';
 import { PokemonCatalogueService } from './pokemon-catalogue.service';
 import { TrainerService } from './trainer.service';
 
-const {apiKey, apiTrainers } = environment;
+const { apiKey, apiTrainers } = environment;
 
 @Injectable({
   providedIn: 'root'
@@ -16,63 +16,55 @@ export class FavouriteService {
 
   private _loading: boolean = false;
 
-  get loading(): boolean{
+  get loading(): boolean {
     return this._loading;
   }
 
   constructor(
     private http: HttpClient,
-    private readonly pokemonService: PokemonCatalogueService, 
+    private readonly pokemonService: PokemonCatalogueService,
     private readonly trainerService: TrainerService,
 
   ) { }
   //get the pokemon based in the name
 
-public addToFavourtites(pokemonName: string): Observable<Trainer> {
+  public addToFavourtites(pokemonName: string): Observable<Trainer> {
 
-if(!this.trainerService.trainer){
-  throw new Error("addToFavourites: There is no user");
+    if (!this.trainerService.trainer) {
+      throw new Error("addToFavourites: There is no user");
+    }
 
-}
+    const trainer: Trainer = this.trainerService.trainer;
+    const pokemon: Pokemon | undefined = this.pokemonService.pokemonByName(pokemonName);
 
-const trainer: Trainer = this.trainerService.trainer;
-const pokemon: Pokemon | undefined = this.pokemonService.pokemonByName(pokemonName);
-if (!pokemon){
-throw new Error ("addToFavourites: No pokemon name: " + pokemonName);
+    if (!pokemon) {
+      throw new Error("addToFavourites: No pokemon with name: " + pokemonName);
+    }
 
-}
+    if (this.trainerService.inFavourites(pokemonName)) {
+      throw new Error("addToFavourites: Pokemon already in favourites: " + pokemonName);
+    }
 
-if (this.trainerService.inFavourites(pokemonName)){
-  throw new Error ("addToFavourites: Pokemon already in favourites: " + pokemonName);
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "x-api-key": apiKey
+    })
 
-}
-const headers = new HttpHeaders({
-  "Content-Type": "application/json",
-  "x-api-key": apiKey
-
-
-})
-this._loading = true;
-
-//this is the values we want to update
-return this.http.patch<Trainer>(`${apiTrainers}/${trainer.name}`, {
-  favourites: [...trainer.favourites, pokemon]
-
-}, {
-  headers
-
-})
-
-.pipe(
-  tap((uppdatedTrainer: Trainer) => {
-    this.trainerService.trainer = uppdatedTrainer;
-
-
-  }),
-  finalize(() => {
-  
-  this._loading = false;
-})
-)
-}
+    this._loading = true;
+    console.log(trainer)
+    //this is the values we want to update
+    return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
+      favourites: [...trainer.favourites, pokemon]
+    }, {
+      headers
+    })
+      .pipe(
+        tap((uppdatedTrainer: Trainer) => {
+          this.trainerService.trainer = uppdatedTrainer;
+        }),
+        finalize(() => {
+          this._loading = false;
+        })
+      )
+  }
 }

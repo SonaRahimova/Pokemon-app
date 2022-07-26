@@ -25,12 +25,11 @@ export class TrainerService {
 
    }
 
-   public inFavourites(pokemonName: string): boolean{
+   public inFavourites(pokemonName: string): boolean {
     if(this._trainer){
     return Boolean( this._trainer?.favourites.find((pokemon: Pokemon) => pokemon.name === pokemonName));
-    
-
    }
+
    return false;
 }
 }

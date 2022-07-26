@@ -4,7 +4,16 @@
 <button
    (click)="onFavouriteClick()"
    class="border border-cyan-50 birder-slate-300 rounded flex justify-center items-center text-red-600 "> 
-    <span class="material-icons">favorite_border</span>
+    
+   <span *ngIf="isFavourite; then favourite else notFavourite" class="material-icons"></span>
+   
+   <ng-template #favourite>
+        <span class="material-icons">favorite</span>
+    </ng-template>
+    <ng-template #notFavourite>
+        <span class="material-icons">favorite_border</span>
+    </ng-template>
+
 </button>
 
     
